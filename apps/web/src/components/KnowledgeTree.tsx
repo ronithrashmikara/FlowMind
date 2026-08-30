@@ -11,6 +11,7 @@ import ReactFlow, {
   Controls,
   Background,
   MiniMap,
+  BackgroundVariant,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Loader2, Eye, X } from 'lucide-react';
@@ -160,7 +161,7 @@ export default function KnowledgeTree({ uploadedFile }: KnowledgeTreeProps) {
         >
           <Controls />
           <MiniMap />
-          <Background variant="dots" gap={12} size={1} />
+          <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
       </div>
 
