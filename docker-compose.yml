@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./services/api
+    environment:
+      FLOWMIND_DATA_DIR: /data
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      MISTRAL_MODEL: ${MISTRAL_MODEL:-mistral-small-latest}
+      CORS_ORIGINS: http://localhost:3000
+    volumes:
+      - flowmind-data:/data
+    ports:
+      - "8000:8000"
+  web:
+    build: ./apps/web
+    environment:
+      API_URL: http://api:8000
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+volumes:
+  flowmind-data:

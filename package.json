@@ -1,0 +1,10 @@
+{
+  "name": "flowmind",
+  "private": true,
+  "scripts": {
+    "dev:web": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "lint": "npm --prefix apps/web run lint",
+    "dev:api": "python -m uvicorn main:app --reload --app-dir services/api"
+  }
+}

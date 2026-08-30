@@ -1,0 +1,10 @@
+
+# Local source checkouts
+_imports/
+__pycache__/
+*.py[cod]
+.venv/
+services/api/data/
+/data/
+.env
+
