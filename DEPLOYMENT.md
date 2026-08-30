@@ -2,6 +2,12 @@
 
 ## Modal API
 
+The API is currently deployed at:
+
+`https://ronithrashmikara--flowmind-api-fastapi-app.modal.run`
+
+Health check: `https://ronithrashmikara--flowmind-api-fastapi-app.modal.run/health`
+
 ```bash
 python -m pip install modal
 modal setup
@@ -18,6 +24,10 @@ Create one Vercel project from this repository:
 - Root Directory: `apps/web`
 - Framework: Next.js
 - Environment variable: `API_URL=<Modal ASGI URL>`
+
+For the current deployment, set:
+
+`API_URL=https://ronithrashmikara--flowmind-api-fastapi-app.modal.run`
 
 The browser calls same-origin `/api/*` routes; only the server-side BFF talks to Modal, avoiding CORS and keeping deployment details private.
 

@@ -1,6 +1,9 @@
 # FlowMind
 
-FlowMind is the single home for the former **flow-mind** frontend and **PathTree** backend. Both Git histories are preserved in this repository, while the product now ships as one monorepo.
+FlowMind is the single home for the former **flow-mind** frontend and **PathTree** backend. Their product code is consolidated into one deployable monorepo; the new public history starts clean so credentials exposed by the legacy repositories are not copied forward.
+
+- Repository: https://github.com/ronithrashmikara/FlowMind
+- Live API: https://ronithrashmikara--flowmind-api-fastapi-app.modal.run
 
 ## Why the merge matters
 

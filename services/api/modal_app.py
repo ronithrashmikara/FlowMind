@@ -7,7 +7,7 @@ volume = modal.Volume.from_name("flowmind-data", create_if_missing=True)
 app = modal.App("flowmind-api")
 
 
-@app.function(image=image, volumes={"/data": volume}, timeout=300, scaledown_window=300)
+@app.function(image=image, secrets=[modal.Secret.from_name("flowmind-secrets")], volumes={"/data": volume}, timeout=300, scaledown_window=300)
 @modal.asgi_app()
 def fastapi_app():
     import os
