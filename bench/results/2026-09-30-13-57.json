@@ -1,0 +1,334 @@
+{
+  "date": "2026-09-30T13:57:00.974Z",
+  "server": {
+    "base": "http://localhost:3100",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "embeddings": "nvidia/nemotron-3-embed-1b:free"
+  },
+  "ingestion": {
+    "source": "public/samples/Neural-Networks-Lecture-4.pdf",
+    "pages": 4,
+    "passages": 10,
+    "concepts": 16,
+    "links": 20,
+    "title": "Neural Networks Fundamentals",
+    "gold_concept_recall_pct": 56.7,
+    "gold_link_recall_pct": 30,
+    "parse_s": 7.4,
+    "stage_s": {
+      "embedding": 3.4,
+      "concepts": 9,
+      "relations": 13.6
+    },
+    "total_s": 33.5,
+    "missed_concepts": [
+      "weight",
+      "bias",
+      "hidden layer",
+      "learning rate",
+      "stochastic gradient descent",
+      "epoch",
+      "momentum",
+      "chain rule",
+      "computational graph",
+      "vanishing gradient",
+      "dropout",
+      "early stopping",
+      "validation set"
+    ],
+    "missed_links": [
+      "chain rule → backpropagation",
+      "loss function → gradient descent",
+      "gradient descent → learning rate",
+      "overfitting → dropout",
+      "regulari → dropout",
+      "backpropagation → vanishing gradient",
+      "gradient descent → stochastic gradient descent"
+    ]
+  },
+  "retrieval": {
+    "questions": 14,
+    "keyword_only_hit_pct": 100,
+    "hybrid_hit_pct": 100
+  },
+  "tutor": {
+    "answerable": 14,
+    "answer_accuracy_pct": 92.9,
+    "answers_with_citations_pct": 92.9,
+    "citations_in_range_pct": 100,
+    "out_of_scope": 5,
+    "abstention_pct": 100,
+    "fabrication_on_out_of_scope_pct": 0,
+    "abstention_judged_by_llm": true,
+    "multilingual_in_target_language_pct": 100,
+    "critic_first_draft_pass_pct": 75,
+    "critic_final_verified_pct": 100,
+    "drafts_revised_pct": 25,
+    "mean_critic_score": 96,
+    "latency_p50_s": 16.4,
+    "latency_p90_s": 25.5,
+    "errors": [
+      "Bad escaped character in JSON at position 537 (line 1 column 538)"
+    ]
+  },
+  "quiz": {
+    "questions": 6,
+    "flashcards": 8,
+    "structurally_valid_pct": 100,
+    "answer_key_correct_pct": 83.3,
+    "latency_s": 14.1
+  },
+  "details": {
+    "retrieval": [
+      {
+        "q": "Who introduced the perceptron, and in what year?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "Why can a single perceptron not learn the XOR function?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What is the maximum value of the gradient of the sigmoid function?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What is the gradient of ReLU for positive inputs, and why does that help deep networks?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What is the dying ReLU problem?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "Which loss function is standard for regression tasks?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What happens if the learning rate is too large?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What batch sizes are typical for mini-batch gradient descent?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What does Adam add on top of momentum?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "What are the four stages of one training step?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "Why is backpropagation efficient compared with computing each gradient separately?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "Name techniques that reduce vanishing or exploding gradients.",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "How can you tell from the loss curves that a model is overfitting?",
+        "hybrid": true,
+        "keyword": true
+      },
+      {
+        "q": "Is dropout used at test time?",
+        "hybrid": true,
+        "keyword": true
+      }
+    ],
+    "answerable": [
+      {
+        "q": "Who introduced the perceptron, and in what year?",
+        "correct": true,
+        "verified": true,
+        "attempts": 2,
+        "score": 90,
+        "s": 25.5,
+        "answer": "**Frank Rosenblatt introduced the perceptron in 1958**, and the perceptron is described as the simplest neural network: a single neuron using a step activation [1].\n\nA single perceptron can separate only data that is **linearly separable**, so it famously cannot learn the XOR function [1]. XOR’s failure helped motivate networks with more than one layer [1]. A **multilayer perceptron (MLP)** uses fully connected neurons arranged in an input layer, one or more hidden layers, and an output layer [1]. Multiple layers combined with non-linear activation functions allow these networks to represent relationships that a single perceptron cannot [1]. Non-linearity is important because, without it, a stack of layers collapses into one linear transformation [2].\n\n**Check your understanding:** Why can a single perceptron fail on XOR, while a multilayer network with non-linear activations can represent relationships beyond linear separation?"
+      },
+      {
+        "q": "Why can a single perceptron not learn the XOR function?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 95,
+        "s": 11.5,
+        "answer": "A **single perceptron** cannot learn XOR because it can separate only data that is **linearly separable** [1]. Linearly separable means that one straight decision boundary can place examples of each class on the appropriate side. A single perceptron makes its decision from a weighted sum plus a bias: $$z = w \\cdot x + b$$ [1]. Its weights control how strongly each input influences the output, while the bias shifts the decision boundary away from the origin [1].\n\nXOR requires a classification pattern that a single straight boundary cannot separate [1]. The XOR problem was historically important because it demonstrated this limitation and motivated networks with more than one layer [1]. To learn relationships like XOR, we use a **multilayer perceptron (MLP)**, which stacks fully connected neurons into an input layer, one or more hidden layers, and an output layer [1]. Multiple layers combined with non-linear activation functions allow the network to represent relationships that a single perceptron cannot [1].\n\nThe key point is that adding depth alone is not enough: without non-linear activation functions, stacked layers collapse into one linear transformation [3]."
+      },
+      {
+        "q": "What is the maximum value of the gradient of the sigmoid function?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 98,
+        "s": 7.4,
+        "answer": "The maximum value of the sigmoid gradient is **0.25** (or $\\frac{1}{4}$). The sigmoid function is defined as $\\sigma(z)=\\frac{1}{1+e^{-z}}$, and its gradient reaches this maximum when the input is $z=0$. For large positive or negative inputs, the gradient approaches zero, which contributes to the **vanishing gradient problem** in deep neural networks. [1] Because backpropagation repeatedly multiplies local derivatives while passing gradients backward, a gradient may become very small across many layers. [3] Sigmoid is useful for producing values between 0 and 1, but its small gradient can make early layers learn extremely slowly. [1][3]"
+      },
+      {
+        "q": "What is the gradient of ReLU for positive inputs, and why does that help deep networks?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 98,
+        "s": 10.4,
+        "answer": "For a positive input, the gradient of **ReLU** is exactly $1$. ReLU is defined as\n\n$$\\operatorname{ReLU}(z)=\\max(0,z).$$\n\nThus, for $z>0$,\n\n$$\\frac{d}{dz}\\operatorname{ReLU}(z)=1.$$\n\n[1][2]\n\nThis supports deep networks because **backpropagation** passes through a computational graph by multiplying incoming gradients by local derivatives. Since ReLU contributes a derivative of $1$ for positive inputs, it does not shrink the gradient at those points. This helps prevent the **vanishing gradient problem**, in which gradients shrink across many layers and cause early layers to learn extremely slowly. [4][6]\n\nFor comparison, a sigmoid derivative is at most $0.25$ and approaches zero for large absolute inputs, so stacking sigmoid layers can make gradients shrink repeatedly. [1][4][6]\n\nHowever, ReLU has its own weakness: the **dying ReLU problem**. If a neuron receives only negative inputs, it outputs zero and may stop learning. [2]\n\nA useful rule of thumb is to use ReLU in hidden layers, sigmoid for a single binary output, and softmax for multi-class outputs. [2]"
+      },
+      {
+        "q": "What is the dying ReLU problem?",
+        "correct": true,
+        "verified": true,
+        "attempts": 2,
+        "score": 98,
+        "s": 20.8,
+        "answer": "**Dying ReLU** is a failure mode that can occur when a ReLU neuron receives only negative inputs. ReLU is defined as $$\\operatorname{ReLU}(z)=\\max(0,z)$$, so every negative input produces an output of zero. [1]\n\nThe **gradient** of ReLU is exactly 1 for positive inputs, which helps gradients flow through many layers. [1][2] However, if a neuron’s input remains negative, its output stays zero. Because that neuron produces no useful positive signal for learning, it can stop learning; this is the dying ReLU problem. [1]\n\nFor example, if a neuron consistently receives $z=-2$ during training, then $\\operatorname{ReLU}(-2)=0$. If the same negative-input pattern continues, the neuron can remain inactive rather than adjusting its weights. [1]\n\nA related but distinct issue is the **vanishing gradient problem**: during backpropagation, gradients can shrink as they pass through many layers, causing early layers to learn extremely slowly. [5] The passages identify ReLU, careful initialisation, batch normalisation, and gradient clipping as methods that reduce these gradient problems, but they do not specifically state that these methods cure dying ReLU. [3]"
+      },
+      {
+        "q": "Which loss function is standard for regression tasks?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 98,
+        "s": 5.7,
+        "answer": "The standard loss function for **regression tasks** is **Mean Squared Error (MSE)**. It averages the squared differences between the network’s predictions and the true target values, so larger errors receive proportionally greater emphasis. [1] MSE is selected because it matches the regression task, while classification commonly uses **cross-entropy loss** with probability-producing outputs such as softmax or sigmoid. [1]"
+      },
+      {
+        "q": "What happens if the learning rate is too large?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 97,
+        "s": 17.8,
+        "answer": "A **learning rate** $(\\eta)$ controls the size of each **gradient-descent** weight update. Gradient descent changes each weight using\n\n$$\nw \\leftarrow w - \\eta \\frac{\\partial L}{\\partial w}.\n$$\n\nThe gradient points in the direction of steepest increase of the loss, so moving in the opposite direction helps reduce that loss [1].\n\nIf the learning rate is **too large**, each update takes an excessively large step. Training may **diverge**, meaning the loss does not settle down, or it may **oscillate around the minimum** because the weights repeatedly overshoot it [1]. Backpropagation supplies the gradients needed for this update, while the learning rate determines how strongly those gradients change the weights [1][4][6].\n\nFor comparison, a learning rate that is too small makes training very slow and may leave optimization stuck on plateaus [1]. The listed typical starting range is $0.1$ to $0.001$, although the suitable value is not universal [1].\n\n**Check:** Why can a very large learning rate cause the weights to jump across a minimum repeatedly rather than settling near it?"
+      },
+      {
+        "q": "What batch sizes are typical for mini-batch gradient descent?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 96,
+        "s": 9.2,
+        "answer": "Mini-batch gradient descent uses a small group of training examples for each weight update. The lecture gives batch sizes such as **32 to 256 examples** as an example of this practical range. [2]\n\nThe batch size affects two aspects of training:\n\n- **Stability:** A mini-batch produces a gradient based on more examples than stochastic gradient descent (SGD), which updates after every single example and produces faster but noisier updates. [1]\n- **Efficiency:** Mini-batches balance reasonably stable gradients with efficient use of GPU hardware, making them the standard approach in practice. [2]\n\nThus, 32, 64, or 128 are examples of mini-batch sizes within the stated range, although the passages do not prescribe one exact batch size as universally best. They also do not provide a rule for selecting the best value for a specific dataset. [2]\n\n**Remember:** mini-batch size is the number of examples used to compute the gradient for **one** gradient-descent update; one complete pass through the training set is called an **epoch**. [1] [2]"
+      },
+      {
+        "q": "What does Adam add on top of momentum?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 92,
+        "s": 19.5,
+        "answer": "**Momentum** and **Adam** both extend stochastic gradient descent (SGD), but they add different kinds of stabilization.[1]\n\n- **Momentum** accumulates a running average of past gradients, smoothing noisy updates and helping the optimizer move more consistently through the loss landscape.[1]\n- **Adam** does more than use momentum: it additionally adapts the **learning rate of each weight individually**.[1]\n\nThe basic gradient-descent update is\n\n$$w \\leftarrow w-\\eta\\frac{\\partial L}{\\partial w},$$\n\nwhere the gradient points toward steepest increase of the loss, the optimizer moves in the opposite direction, and the learning rate $\\eta$ controls the step size.[2] Adam therefore extends this basic update with momentum information and a weight-specific adjustment to the effective learning rate.[1][2]\n\nA simple way to remember the distinction is: **momentum smooths updates across time, while Adam also personalizes the learning rate for each weight**.[1] The supplied passages do not describe Adam’s exact update equations, so they do not support a more detailed derivation here; look for those equations under Adam’s moving-average and adaptive-learning-rate calculations."
+      },
+      {
+        "q": "What are the four stages of one training step?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 96,
+        "s": 15.5,
+        "answer": "The four stages of one **neural-network training step** are:\n\n1. **Forward pass (forward propagation):** Compute the network’s predictions layer by layer from its inputs; during this pass, each node stores intermediate values needed later. [1]\n2. **Loss computation:** Calculate a loss that measures how far the predictions are from the true targets. [1] [8]\n3. **Backward pass (backpropagation):** Starting from the loss, apply the chain rule through the computational graph to compute gradients for the weights. Each node multiplies the incoming gradient by its local derivative and sends the result to the nodes that fed into it. [1] [4]\n4. **Gradient-descent update:** Adjust each weight in the direction opposite its gradient:\n\n$$\n w \\leftarrow w-\\eta\\frac{\\partial L}{\\partial w}\n$$\n\nHere, the learning rate $\\eta$ controls the size of the update. [3]\n\nTogether, these stages provide the weights and gradients needed to reduce the loss during training. [8]"
+      },
+      {
+        "q": "Why is backpropagation efficient compared with computing each gradient separately?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 96,
+        "s": 16.4,
+        "answer": "**Backpropagation is efficient because it shares intermediate work instead of differentiating every weight independently.** [1][2]\n\nDuring **forward propagation**, the network computes predictions from the inputs, layer by layer, and each computational-graph node stores the intermediate values needed later. [2][3] In backpropagation, the process starts at the loss and moves backward through the graph. [2]\n\nFor a simple dependency chain,\n\n$$\nL \\rightarrow a \\rightarrow z \\rightarrow w,\n$$\n\nthe chain rule gives\n\n$$\n\\frac{\\partial L}{\\partial w}\n=\n\\frac{\\partial L}{\\partial a}\n\\cdot\n\\frac{\\partial a}{\\partial z}\n\\cdot\n\\frac{\\partial z}{\\partial w}.\n$$\n\n[2] When one gradient is computed, its intermediate value is passed to earlier nodes and reused rather than recalculated from the loss. [2] This reuse allows all weight gradients to be obtained in one backward pass. [1][2]\n\nThe efficiency comes from the **dynamic programming** principle: calculate each shared sub-result once and reuse it. Consequently, backpropagation costs roughly the same as one forward pass, regardless of the number of weights. [2]"
+      },
+      {
+        "q": "Name techniques that reduce vanishing or exploding gradients.",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 98,
+        "s": 14.4,
+        "answer": "Techniques that reduce **vanishing or exploding gradients** include:\n\n- **ReLU activation:** ReLU helps because its gradient is exactly $1$ for positive inputs, allowing gradients to flow well through many layers.[1][5]\n- **Careful weight initialisation:** He or Xavier initialisation can reduce vanishing and exploding gradients by choosing suitable starting weight scales.[1]\n- **Batch normalisation:** This technique reduces these gradient problems during network training.[1]\n- **Gradient clipping:** Clipping limits excessively large gradients, which helps control exploding gradients and unstable updates.[1]\n\nVanishing gradients occur when backpropagation multiplies many local derivatives and the gradients shrink exponentially as they move backward through layers; this makes early layers learn extremely slowly.[2] Exploding gradients occur when the multiplied factors are larger than $1$, producing unstable updates.[1] These issues are especially connected to activation choices: sigmoid derivatives are at most $0.25$, whereas ReLU has a derivative of exactly $1$ for positive inputs.[1][5]"
+      },
+      {
+        "q": "How can you tell from the loss curves that a model is overfitting?",
+        "correct": false,
+        "verified": false,
+        "attempts": 0,
+        "s": 17.5,
+        "answer": ""
+      },
+      {
+        "q": "Is dropout used at test time?",
+        "correct": true,
+        "verified": true,
+        "attempts": 1,
+        "score": 98,
+        "s": 10.9,
+        "answer": "No. **Dropout is switched off at test time**; it is used during training only. [1]\n\nDuring each training step, dropout randomly sets a fraction of neurons—for example, 50%—to zero. This prevents the network from relying too strongly on any single neuron and helps reduce **overfitting**. [1]\n\nAt test time, all neurons are used so the network can make its full prediction. [1]\n\nA useful distinction is:\n\n- **Training:** randomly disable selected neurons. [1]\n- **Testing:** use the full network without dropout. [1]\n\nThis connects to **generalisation**, which is performance on unseen data: overfitting occurs when a network memorises training data, including its noise, so training loss continues falling while validation loss rises. Regularisation methods such as dropout are intended to improve generalisation. [2]"
+      }
+    ],
+    "out_of_scope": [
+      {
+        "q": "What is the formula for scaled dot-product attention in transformers?",
+        "abstained": true,
+        "fabricated": false,
+        "verified": true,
+        "answer": "The supplied passages do **not** contain the formula for scaled dot-product attention in transformers, so I cannot provide it without introducing unsupported material. The passages focus on artificial neurons, multilayer perceptrons, activation functions, backpropagation, and related training methods [1]-[5].\n\nTo answer your question accurately, look for a transformer or attention passage that explicitly defines the inputs, the dot product, the scaling factor, and the operation applied to the resulting scores. The sources provided do not specify any of those attention components [1]-[3].\n\nBecause the required definition is absent, it would be unsafe to reconstruct the formula from memory or infer it from the neural-network passages. A suitable follow-up source would be a lecture section or textbook excerpt on **scaled dot-product attention** or **self-attention** [1]-[3]."
+      },
+      {
+        "q": "What top-1 accuracy does ResNet-50 achieve on ImageNet?",
+        "abstained": true,
+        "fabricated": false,
+        "verified": true,
+        "answer": "The provided passages do **not** report a top-1 accuracy for **ResNet-50** on **ImageNet**, so that numerical value cannot be determined from these sources without inventing an unsupported answer. [1] [2] [3] [4] [5] [6] [7] [8]\n\nThe passages explain general neural-network topics, including layers, activation functions, loss functions, gradient descent, regularisation, and generalisation, but none mentions ResNet-50, ImageNet, or top-1 accuracy. [1] [2] [3] [4] [5] [6] [7] [8]\n\nTo find the answer, look for the original **ResNet paper** or an official model-evaluation table that explicitly reports **ResNet-50 performance on ImageNet**. You should also check that the reported figure actually refers to **top-1 accuracy** rather than top-5 accuracy. The relevant concept to review in the supplied material is **generalisation**, defined as performance on unseen data. [3]"
+      },
+      {
+        "q": "Who won the Turing Award for deep learning, and in which year?",
+        "abstained": true,
+        "fabricated": false,
+        "verified": true,
+        "answer": "The provided source passages do not name any Turing Award recipients or state the year of the award, so I cannot determine who won it for deep learning from these sources. To answer this reliably, look for an authoritative source such as the Association for Computing Machinery (ACM) Turing Award page or a historical account explicitly connecting the award to deep learning.\n\nThe passages instead explain neural-network fundamentals, including artificial neurons, multilayer perceptrons, activation functions, forward propagation, loss functions, gradient descent, and backpropagation [1][2][3][4][7][8]. Therefore, making an award claim from these passages would be unsupported."
+      },
+      {
+        "q": "How many GPUs are needed to train GPT-3?",
+        "abstained": true,
+        "fabricated": false,
+        "verified": true,
+        "answer": "The passages do not state how many GPUs were needed to train GPT-3, so that number cannot be determined from the provided sources [1][2][3][4][5][6][7][8]. They explain general neural-network training topics, including mini-batch gradient descent, backpropagation, and the use of GPU hardware, but they do not discuss GPT-3 specifically [2][3]. For an answer about GPT-3, you would need an **external reliable account**, such as its technical report or a documented account of its training infrastructure. The passages also do not support a distinction between GPUs used for a particular training run and GPUs needed to reproduce training [1][3]."
+      },
+      {
+        "q": "What is the exact default learning rate of the Adam optimizer in PyTorch?",
+        "abstained": true,
+        "fabricated": false,
+        "verified": true,
+        "answer": "The passages do not state the **exact default learning rate of Adam in PyTorch**, so that value cannot be determined from the provided sources. [1] They only explain that Adam is an adaptive optimizer that, in addition to momentum, adapts the learning rate of each weight individually. [1] The general gradient-descent update is\n\n$$w \\leftarrow w - \\eta \\frac{\\partial L}{\\partial w},$$\n\nwhere $\\eta$ is the learning rate and $\\frac{\\partial L}{\\partial w}$ is the loss gradient with respect to a weight. [2] The sources give typical starting values of $0.1$ to $0.001$ for gradient descent, but do not say that these are PyTorch’s Adam defaults. [2] To find the exact value, look at the **PyTorch Adam optimizer documentation or source code** and check the `lr` parameter in `torch.optim.Adam`; the source passages provided do not include that information."
+      }
+    ],
+    "multilingual": [
+      {
+        "q": "What does the learning rate control?",
+        "language": "Sinhala",
+        "inLanguage": true,
+        "answer": "**Learning rate (ඉගෙන ගැනුමේ අනුපාතය)** යනු gradient descent කිරීමේ එක් පාරකට weight එකක් යාවත්කාලීන කරන ප්‍රමාණය පාලනය කරන සුපිරි **hyperparameter** එකයි.[1]\n\nWeight update rule එක:\n\n$$w \\leftarrow w - \\eta\\frac{\\partial L}{\\partial w}$$\n\nමෙහි $\\eta$ යනු learning rate එකයි; $L$ යනු loss එකයි. Gradient එක loss එක steepest increase දිශාවට ඉන්දි **opposite direction** එකෙන් යාවත්කාලීන කිරීම සිදු කර, loss එක අවම කිරීමට උපකාර වේ.[1]\n\n- **ඉතා විශාල** learning rate නම් training diverge වීමට හෝ minimum එක වටේ oscillate කිරීමට පුළුවන්.[1]\n- **ඉතා කුඩා** learning rate නම් training ඉතා සෙමින් සිදු වී plateau එකක අතර ඒක්කාලීන කිරීමට පුළුවන්.[1]\n- ආරම්භක learning rate එකක් ලබා දීමට **0.1 සිට 0.001** දක්වා typical values භාවිත කරන ලැයි.[1]\n\nඋදාහරණයක් ලෙස, වැරදියට විශාල learning rate එකක් යොදා ගත්තොත් model එක minimum එක අත හැර නැවත නැවත චලනය විය හැකිය.[1] එනම් ඉගෙන ගැනුමේ ප්‍රමාණය “ඉක්මන් ද, පරිසිදු ද” යන අතර තෝරාගැනීමට භාවිත වේ."
+      },
+      {
+        "q": "What does dropout do during training?",
+        "language": "Spanish",
+        "inLanguage": true,
+        "answer": "**Dropout (desactivación aleatoria)** es una técnica de **regularización** que ayuda a reducir el **overfitting** durante el entrenamiento de una red neuronal [1].\n\nEn cada **training step**, dropout pone a cero una fracción de las neuronas; por ejemplo, puede desactivar el 50 %. Como estas neuronas no contribuyen temporalmente a la salida, la red no puede depender exclusivamente de ninguna de ellas [1]. Así, cada iteración presenta una estructura diferente y obliga al aprendizaje a distribuir la información entre distintas neuronas, lo que reduce la posibilidad de memorizar el ruido de los datos de entrenamiento [1][5].\n\nPor ejemplo, si una capa tiene cuatro neuronas y dropout es 50 %, en una iteración podrían activarse dos neuronas y quedar desactivadas las otras dos; en la siguiente iteración la selección podría ser diferente [1]. Durante la evaluación, **dropout se desactiva (switched off)** para usar el comportamiento completo de la red [1]."
+      }
+    ]
+  }
+}
