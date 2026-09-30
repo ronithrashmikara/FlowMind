@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/assets/banner.webp" alt="FlowMind banner" width="100%"></p>
+
 # FlowMind
 
 FlowMind is the single home for the former **flow-mind** frontend and **PathTree** backend. Their product code is consolidated into one deployable monorepo; the new public history starts clean so credentials exposed by the legacy repositories are not copied forward.
