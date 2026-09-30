@@ -1,42 +1,49 @@
 # Deployment
 
-## Modal API
+FlowMind is a single Next.js app: the UI, the agent API routes and the sample lecture all deploy together.
+There is no separate backend, database or volume. Documents are parsed in the visitor's browser and the
+workspace is stored in their browser (IndexedDB); the server only proxies model calls.
 
-The API is currently deployed at:
+## Environment
 
-`https://ronithrashmikara--flowmind-api-fastapi-app.modal.run`
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `OPENROUTER_API_KEY` or `MISTRAL_API_KEY` | one of them | Server-side model key. Never use a `NEXT_PUBLIC_*` name. |
+| `LLM_PROVIDER` | no | `openrouter` or `mistral` when both keys are set |
+| `OPENROUTER_MODEL` | no | Chat model, default `stealth/space-bunny-alpha` |
+| `OPENROUTER_EMBED_MODEL` | no | Embeddings, default `nvidia/nemotron-3-embed-1b:free` (`none` = keyword + graph retrieval only) |
+| `OPENROUTER_REASONING` | no | Reasoning effort for reasoning models, default `low` |
+| `MISTRAL_MODEL` | no | Default `mistral-small-latest` (embeddings use `mistral-embed`) |
 
-Health check: `https://ronithrashmikara--flowmind-api-fastapi-app.modal.run/health`
+Visitors can also paste their own OpenRouter (`sk-or-…`) or Mistral key in **Settings**; it stays in their
+browser and is sent only to this site's API routes. The site keeps working that way after a server key is revoked.
 
-```bash
-python -m pip install modal
-modal setup
-modal secret create flowmind-secrets MISTRAL_API_KEY=... CORS_ORIGINS=https://your-web-domain
-modal deploy services/api/modal_app.py
-```
+## Vercel (recommended)
 
-Modal prints the stable ASGI URL. Verify it with `GET /health`. Uploaded source indexes are stored on the `flowmind-data` Volume rather than an ephemeral container disk.
+1. Import `ronithrashmikara/FlowMind` in Vercel. Framework: Next.js. Root directory: the repository root.
+2. Add `OPENROUTER_API_KEY` (or `MISTRAL_API_KEY`) under Settings → Environment Variables.
+3. Deploy. `vercel.json` gives the agent routes up to 60 s, which covers a Teaching Agent draft, a Critic
+   check and one revision.
 
-## Vercel web
-
-Create one Vercel project from this repository:
-
-- Root Directory: `apps/web`
-- Framework: Next.js
-- Environment variable: `API_URL=<Modal ASGI URL>`
-
-For the current deployment, set:
-
-`API_URL=https://ronithrashmikara--flowmind-api-fastapi-app.modal.run`
-
-The browser calls same-origin `/api/*` routes; only the server-side BFF talks to Modal, avoiding CORS and keeping deployment details private.
-
-## Docker host
-
-Set `MISTRAL_API_KEY` in the host secret manager, then run:
+From the CLI:
 
 ```bash
-docker compose up -d --build
+npx vercel link
+npx vercel env add OPENROUTER_API_KEY production
+npx vercel deploy --prod
 ```
 
-Back up the `flowmind-data` volume. Add authentication before exposing a shared or paid production instance.
+## Docker / any Node host
+
+```bash
+docker build -t flowmind .
+docker run -p 3000:3000 -e OPENROUTER_API_KEY=sk-or-... flowmind
+```
+
+Or without Docker: `npm ci && npm run build && npm start`.
+
+## Legacy Modal API
+
+Earlier versions used a Python API on Modal (`ronithrashmikara--flowmind-api-fastapi-app.modal.run`).
+The single-site app no longer calls it; it can be stopped with `modal app stop flowmind-api`.
+Add authentication or rate limiting before exposing a server key on a high-traffic public deployment.

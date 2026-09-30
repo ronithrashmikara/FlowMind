@@ -1,10 +1,11 @@
-
-# Local source checkouts
-_imports/
-__pycache__/
-*.py[cod]
-.venv/
-services/api/data/
-/data/
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
 .env
-
+.env.local
+.env*.local
+.vercel/
+public/pdf.worker.min.mjs
+_imports/
